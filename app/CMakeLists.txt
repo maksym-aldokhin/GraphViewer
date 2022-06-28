@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(qmlGraphic VERSION 0.1 LANGUAGES CXX)
+project(GraphViewer VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -11,8 +11,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_compile_definitions(QML_GRAPHIC_TEST_MODE)
-set(QML_GRAPHIC_TEST_MODE OFF CACHE BOOL "QML_GRAPHIC_TEST_MODE")
+add_compile_definitions(GRAPH_VIEWER_TEST_MODE)
+set(GRAPH_VIEWER_TEST_MODE OFF CACHE BOOL "GRAPH_VIEWER_TEST_MODE")
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Quick charts)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Quick charts)
@@ -30,7 +30,8 @@ set(source
     ui/utility/Palette.cpp
 )
 
-if ( QML_GRAPHIC_TEST_MODE )
+if ( GRAPH_VIEWER_TEST_MODE )
+    message(STATUS "GraphViewer set main.cpp")
     list(APPEND source
         test/main.cpp
     )
@@ -53,21 +54,25 @@ set(ui
     ui/ui.qrc
 )
 
-if ( QML_GRAPHIC_TEST_MODE )
-    add_executable(qmlGraphic
+if ( GRAPH_VIEWER_TEST_MODE )
+    message(STATUS "GraphViewer generate .exe")
+    add_executable(GraphViewer
         ${source}
         ${header}
         ${ui}
     )
 else()
-    add_library ( qmlGraphic SHARED
+    message(STATUS "GraphViewer generate .dll")
+    add_library ( GraphViewer SHARED
         ${source}
         ${header}
         ${ui}
     )
+
+    add_compile_definitions(GraphViewer_LIBRARY)
 endif()
 
-target_link_libraries(qmlGraphic PRIVATE
+target_link_libraries(GraphViewer PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Quick
     Qt${QT_VERSION_MAJOR}::Charts
