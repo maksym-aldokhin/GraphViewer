@@ -6,6 +6,12 @@
 
 #include <memory>
 
+#if defined(GRAPH_VIEWER_TEST_MODE)
+#  define GraphViewer_EXPORT Q_DECL_EXPORT
+#else
+#  define GraphViewer_EXPORT Q_DECL_IMPORT
+#endif
+
 class QQmlApplicationEngine;
 
 namespace GraphicViewer {
@@ -20,7 +26,7 @@ class GraphicsModel;
 
 }
 
-class Graphics : public QObject
+class GraphViewer_EXPORT Graphics : public QObject
 {
 	Q_OBJECT
 public:
