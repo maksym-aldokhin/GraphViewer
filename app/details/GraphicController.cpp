@@ -82,7 +82,7 @@ void GraphicControllerImpl::update(const QMap<QString, double> &v)
 	for (auto it = v.begin(); it != v.end(); ++it) {
 		for (auto &graph : m_graphics) {
 			if (graph->name() == it.key()) {
-				m_graphics[it.key()]->addPoint(it.value());
+				graph->addPoint(it.value());
 			}
 		}
 	}
