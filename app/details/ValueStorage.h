@@ -2,6 +2,7 @@
 
 #include <QObject>
 #include <QDateTime>
+#include <QVector>
 
 namespace GraphicViewer {
 
