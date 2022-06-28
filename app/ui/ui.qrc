@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>mainWindow/mainWindow.qml</file>
+        <file>qmlSimple/Graphic.qml</file>
+        <file>qmlSimple/GraphicNode.qml</file>
+        <file>qmlSimple/GraphicLegend.qml</file>
+        <file>src/information.png</file>
+        <file>src/down_arrow.png</file>
+        <file>src/up_arrow.png</file>
+    </qresource>
+</RCC>
